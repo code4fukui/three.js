@@ -3,6 +3,7 @@
 import { Object3D } from '../../../../src/core/Object3D.js';
 import { Mesh } from '../../../../src/objects/Mesh.js';
 import { SkinnedMesh } from '../../../../src/objects/SkinnedMesh.js';
+import { AttachedBindMode } from '../../../../src/constants.js';
 
 export default QUnit.module( 'Objects', () => {
 
@@ -11,7 +12,7 @@ export default QUnit.module( 'Objects', () => {
 		// INHERITANCE
 		QUnit.test( 'Extending', ( assert ) => {
 
-			var skinnedMesh = new SkinnedMesh();
+			const skinnedMesh = new SkinnedMesh();
 
 			assert.strictEqual( skinnedMesh instanceof Object3D, true, 'SkinnedMesh extends from Object3D' );
 			assert.strictEqual( skinnedMesh instanceof Mesh, true, 'SkinnedMesh extends from Mesh' );
@@ -19,9 +20,10 @@ export default QUnit.module( 'Objects', () => {
 		} );
 
 		// INSTANCING
-		QUnit.todo( 'Instancing', ( assert ) => {
+		QUnit.test( 'Instancing', ( assert ) => {
 
-			assert.ok( false, 'everything\'s gonna be alright' );
+			const object = new SkinnedMesh();
+			assert.ok( object, 'Can instantiate a SkinnedMesh.' );
 
 		} );
 
@@ -40,8 +42,8 @@ export default QUnit.module( 'Objects', () => {
 
 			const object = new SkinnedMesh();
 			assert.ok(
-				object.bindMode === 'attached',
-				'SkinnedMesh.bindMode should be attached'
+				object.bindMode === AttachedBindMode,
+				'SkinnedMesh.bindMode should be AttachedBindMode'
 			);
 
 		} );
@@ -99,7 +101,7 @@ export default QUnit.module( 'Objects', () => {
 
 		} );
 
-		QUnit.todo( 'boneTransform', ( assert ) => {
+		QUnit.todo( 'applyBoneTransform', ( assert ) => {
 
 			assert.ok( false, 'everything\'s gonna be alright' );
 

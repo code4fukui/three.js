@@ -23,9 +23,10 @@ export default QUnit.module( 'Loaders', () => {
 		} );
 
 		// INSTANCING
-		QUnit.todo( 'Instancing', ( assert ) => {
+		QUnit.test( 'Instancing', ( assert ) => {
 
-			assert.ok( false, 'everything\'s gonna be alright' );
+			const object = new BufferGeometryLoader();
+			assert.ok( object, 'Can instantiate a BufferGeometryLoader.' );
 
 		} );
 
@@ -50,8 +51,6 @@ export default QUnit.module( 'Loaders', () => {
 			const attr = new BufferAttribute( new Float32Array( [ 7, 8, 9, 10, 11, 12 ] ), 2, true );
 			attr.name = 'attribute';
 			attr.setUsage( DynamicDrawUsage );
-			attr.updateRange.offset = 1;
-			attr.updateRange.count = 2;
 
 			geometry.setAttribute( 'attr', attr );
 

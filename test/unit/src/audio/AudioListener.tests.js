@@ -6,9 +6,9 @@ import { Object3D } from '../../../../src/core/Object3D.js';
 
 export default QUnit.module( 'Audios', () => {
 
-	function mockWindowAudioContext() {
+	QUnit.module( 'AudioListener', ( hooks ) => {
 
-		if ( typeof window === 'undefined' ) {
+		function mockWindowAudioContext() {
 
 			global.window = {
 				AudioContext: function () {
@@ -28,14 +28,24 @@ export default QUnit.module( 'Audios', () => {
 
 		}
 
-	}
+		if ( typeof window === 'undefined' ) {
 
-	QUnit.module( 'AudioListener', () => {
+			hooks.before( function () {
+
+				mockWindowAudioContext();
+
+			} );
+
+			hooks.after( function () {
+
+				global.window = undefined;
+
+			} );
+
+		}
 
 		// INHERITANCE
 		QUnit.test( 'Extending', ( assert ) => {
-
-			mockWindowAudioContext();
 
 			const object = new AudioListener();
 			assert.strictEqual(
@@ -46,9 +56,10 @@ export default QUnit.module( 'Audios', () => {
 		} );
 
 		// INSTANCING
-		QUnit.todo( 'Instancing', ( assert ) => {
+		QUnit.test( 'Instancing', ( assert ) => {
 
-			assert.ok( false, 'everything\'s gonna be alright' );
+			const object = new AudioListener();
+			assert.ok( object, 'Can instantiate an AudioListener.' );
 
 		} );
 

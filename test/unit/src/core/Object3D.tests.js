@@ -67,9 +67,10 @@ export default QUnit.module( 'Core', () => {
 		} );
 
 		// INSTANCING
-		QUnit.todo( 'Instancing', ( assert ) => {
+		QUnit.test( 'Instancing', ( assert ) => {
 
-			assert.ok( false, 'everything\'s gonna be alright' );
+			const object = new Object3D();
+			assert.ok( object, 'Can instantiate an Object3D.' );
 
 		} );
 
@@ -986,8 +987,10 @@ export default QUnit.module( 'Core', () => {
 
 			parent.position.set( 3, 2, 1 );
 			parent.updateMatrix();
-			parent.matrixWorldNeedsUpdate = false;
 
+			parent.matrixAutoUpdate = true;
+			child.matrixAutoUpdate = true;
+			parent.matrixWorldNeedsUpdate = true;
 			child.matrixWorldAutoUpdate = false;
 			parent.updateMatrixWorld();
 
@@ -1003,7 +1006,6 @@ export default QUnit.module( 'Core', () => {
 			child.position.set( 0, 0, 0 );
 			parent.position.set( 1, 2, 3 );
 			child.matrixWorldAutoUpdate = true;
-			parent.matrixAutoUpdate = true;
 			parent.updateMatrixWorld();
 
 			assert.deepEqual( child.matrixWorld.elements, [
@@ -1236,7 +1238,7 @@ export default QUnit.module( 'Core', () => {
 			child.matrixWorld.identity();
 			parent.matrixWorld.identity();
 
-			object.updateWorldMatrix( true, true );
+			child.updateWorldMatrix( true, true );
 
 			assert.deepEqual( child.matrixWorld.elements,
 				m.identity().elements,
@@ -1260,6 +1262,7 @@ export default QUnit.module( 'Core', () => {
 			a.castShadow = true;
 			a.receiveShadow = true;
 			a.userData[ 'foo' ] = 'bar';
+			a.up.set( 1, 0, 0 );
 
 			child.uuid = '5D4E9AE8-DA61-4912-A575-71A5BE3D72CD';
 			childChild.uuid = 'B43854B3-E970-4E85-BD41-AAF8D7BFA189';
@@ -1268,7 +1271,7 @@ export default QUnit.module( 'Core', () => {
 
 			const gold = {
 				'metadata': {
-					'version': 4.5,
+					'version': 4.6,
 					'type': 'Object',
 					'generator': 'Object3D.toJSON'
 				},
@@ -1293,11 +1296,14 @@ export default QUnit.module( 'Core', () => {
 									'uuid': 'B43854B3-E970-4E85-BD41-AAF8D7BFA189',
 									'type': 'Object3D',
 									'layers': 1,
-									'matrix': [ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 ]
+									'matrix': [ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 ],
+									'up': [ 0, 1, 0 ]
 								}
-							]
+							],
+							'up': [ 0, 1, 0 ]
 						}
-					]
+					],
+					'up': [ 1, 0, 0 ]
 				}
 			};
 
@@ -1311,7 +1317,7 @@ export default QUnit.module( 'Core', () => {
 
 		QUnit.test( 'clone', ( assert ) => {
 
-			var a;
+			let a;
 			const b = new Object3D();
 
 			assert.strictEqual( a, undefined, 'Undefined pre-clone()' );

@@ -1,7 +1,9 @@
 /* global QUnit */
 
-import { Object3D } from '../../../../src/core/Object3D.js';
 import { Line } from '../../../../src/objects/Line.js';
+
+import { Object3D } from '../../../../src/core/Object3D.js';
+import { Material } from '../../../../src/materials/Material.js';
 
 export default QUnit.module( 'Objects', () => {
 
@@ -10,16 +12,19 @@ export default QUnit.module( 'Objects', () => {
 		// INHERITANCE
 		QUnit.test( 'Extending', ( assert ) => {
 
-			var line = new Line();
-
-			assert.strictEqual( line instanceof Object3D, true, 'Line extends from Object3D' );
+			const line = new Line();
+			assert.strictEqual(
+				line instanceof Object3D, true,
+				'Line extends from Object3D'
+			);
 
 		} );
 
 		// INSTANCING
-		QUnit.todo( 'Instancing', ( assert ) => {
+		QUnit.test( 'Instancing', ( assert ) => {
 
-			assert.ok( false, 'everything\'s gonna be alright' );
+			const object = new Line();
+			assert.ok( object, 'Can instantiate a Line.' );
 
 		} );
 
@@ -60,6 +65,23 @@ export default QUnit.module( 'Objects', () => {
 		QUnit.todo( 'copy', ( assert ) => {
 
 			assert.ok( false, 'everything\'s gonna be alright' );
+
+		} );
+
+		QUnit.test( 'copy/material', ( assert ) => {
+
+			// Material arrays are cloned
+			const mesh1 = new Line();
+			mesh1.material = [ new Material() ];
+
+			const copy1 = mesh1.clone();
+			assert.notStrictEqual( mesh1.material, copy1.material );
+
+			// Non arrays are not cloned
+			const mesh2 = new Line();
+			mesh1.material = new Material();
+			const copy2 = mesh2.clone();
+			assert.strictEqual( mesh2.material, copy2.material );
 
 		} );
 

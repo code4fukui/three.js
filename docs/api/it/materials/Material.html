@@ -29,6 +29,14 @@
 
 		<h2>Proprietà</h2>
 
+		<h3>[property:Boolean alphaHash]</h3>
+		<p>
+			Enables alpha hashed transparency, an alternative to [page:.transparent] or [page:.alphaTest].
+			The material will not be rendered if opacity is lower than a random threshold.
+			Randomization introduces some grain or noise, but approximates alpha blending without
+			the associated problems of sorting. Using TAARenderPass can reduce the resulting noise.
+		</p>
+
 		<h3>[property:Float alphaTest]</h3>
 		<p>
 			Imposta il valore alfa per essere usato quando vengono eseguiti i test alfa.
@@ -143,7 +151,7 @@
 
 		The engine renders double-sided, transparent objects with two draw calls (back faces first, then front faces) to mitigate transparency artifacts.
 		There are scenarios however where this approach produces no quality gains but still doubles draw calls e.g. when rendering flat vegetation like grass sprites. 
-		In these cases, set the `forceSinglePass` flag to `false` to disable the two pass rendering to avoid performance issues.
+		In these cases, set the `forceSinglePass` flag to `true` to disable the two pass rendering to avoid performance issues.
 		</p>
 
 		<h3>[property:Boolean isMaterial]</h3>

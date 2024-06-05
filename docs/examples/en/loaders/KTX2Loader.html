@@ -27,10 +27,21 @@
 			directory.
 		</p>
 
+		<h2>Import</h2>
+
+		<p>
+			[name] is an add-on, and must be imported explicitly.
+			See [link:#manual/introduction/Installation Installation / Addons].
+		</p>
+
+		<code>
+			import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
+		</code>
+
 		<h2>Code Example</h2>
 
 		<code>
-		var ktx2Loader = new THREE.KTX2Loader();
+		var ktx2Loader = new KTX2Loader();
 		ktx2Loader.setTranscoderPath( 'examples/jsm/libs/basis/' );
 		ktx2Loader.detectSupport( renderer );
 		ktx2Loader.load( 'diffuse.ktx2', function ( texture ) {

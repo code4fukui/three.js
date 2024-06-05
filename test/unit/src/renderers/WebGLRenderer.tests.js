@@ -9,7 +9,8 @@ export default QUnit.module( 'Renderers', () => {
 		// INSTANCING
 		QUnit.test( 'Instancing', ( assert ) => {
 
-			assert.ok( new WebGLRenderer(), 'Can instantiate a renderer.' );
+			const renderer = new WebGLRenderer();
+			assert.ok( renderer, 'Can instantiate a WebGLRenderer.' );
 
 		} );
 
@@ -68,13 +69,7 @@ export default QUnit.module( 'Renderers', () => {
 
 		} );
 
-		QUnit.todo( 'outputEncoding', ( assert ) => {
-
-			assert.ok( false, 'everything\'s gonna be alright' );
-
-		} );
-
-		QUnit.todo( 'physicallyCorrectLights', ( assert ) => {
+		QUnit.todo( 'outputColorSpace', ( assert ) => {
 
 			assert.ok( false, 'everything\'s gonna be alright' );
 
@@ -261,9 +256,12 @@ export default QUnit.module( 'Renderers', () => {
 
 		} );
 
-		QUnit.todo( 'dispose', ( assert ) => {
+		QUnit.test( 'dispose', ( assert ) => {
 
-			assert.ok( false, 'everything\'s gonna be alright' );
+			assert.expect( 0 );
+
+			const object = new WebGLRenderer();
+			object.dispose();
 
 		} );
 

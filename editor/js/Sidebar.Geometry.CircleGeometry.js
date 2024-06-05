@@ -18,7 +18,7 @@ function GeometryParametersPanel( editor, object ) {
 	const radiusRow = new UIRow();
 	const radius = new UINumber( parameters.radius ).onChange( update );
 
-	radiusRow.add( new UIText( strings.getKey( 'sidebar/geometry/circle_geometry/radius' ) ).setWidth( '90px' ) );
+	radiusRow.add( new UIText( strings.getKey( 'sidebar/geometry/circle_geometry/radius' ) ).setClass( 'Label' ) );
 	radiusRow.add( radius );
 
 	container.add( radiusRow );
@@ -28,7 +28,7 @@ function GeometryParametersPanel( editor, object ) {
 	const segmentsRow = new UIRow();
 	const segments = new UIInteger( parameters.segments ).setRange( 3, Infinity ).onChange( update );
 
-	segmentsRow.add( new UIText( strings.getKey( 'sidebar/geometry/circle_geometry/segments' ) ).setWidth( '90px' ) );
+	segmentsRow.add( new UIText( strings.getKey( 'sidebar/geometry/circle_geometry/segments' ) ).setClass( 'Label' ) );
 	segmentsRow.add( segments );
 
 	container.add( segmentsRow );
@@ -36,9 +36,9 @@ function GeometryParametersPanel( editor, object ) {
 	// thetaStart
 
 	const thetaStartRow = new UIRow();
-	const thetaStart = new UINumber( parameters.thetaStart * THREE.MathUtils.RAD2DEG ).setStep( 10 ).onChange( update );
+	const thetaStart = new UINumber( parameters.thetaStart * THREE.MathUtils.RAD2DEG ).setUnit( '°' ).setStep( 10 ).onChange( update );
 
-	thetaStartRow.add( new UIText( strings.getKey( 'sidebar/geometry/circle_geometry/thetastart' ) ).setWidth( '90px' ) );
+	thetaStartRow.add( new UIText( strings.getKey( 'sidebar/geometry/circle_geometry/thetastart' ) ).setClass( 'Label' ) );
 	thetaStartRow.add( thetaStart );
 
 	container.add( thetaStartRow );
@@ -46,9 +46,9 @@ function GeometryParametersPanel( editor, object ) {
 	// thetaLength
 
 	const thetaLengthRow = new UIRow();
-	const thetaLength = new UINumber( parameters.thetaLength * THREE.MathUtils.RAD2DEG ).setStep( 10 ).onChange( update );
+	const thetaLength = new UINumber( parameters.thetaLength * THREE.MathUtils.RAD2DEG ).setUnit( '°' ).setStep( 10 ).onChange( update );
 
-	thetaLengthRow.add( new UIText( strings.getKey( 'sidebar/geometry/circle_geometry/thetalength' ) ).setWidth( '90px' ) );
+	thetaLengthRow.add( new UIText( strings.getKey( 'sidebar/geometry/circle_geometry/thetalength' ) ).setClass( 'Label' ) );
 	thetaLengthRow.add( thetaLength );
 
 	container.add( thetaLengthRow );

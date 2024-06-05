@@ -51,7 +51,7 @@
 
 		};
 
-		const loader = new THREE.OBJLoader( manager );
+		const loader = new OBJLoader( manager );
 		loader.load( 'file.obj', function ( object ) {
 
 			//
@@ -86,7 +86,7 @@
 		} );
 
 		// Carica come di solito, quindi revoca gli URL dei Blob 
-		const loader = new THREE.GLTFLoader( manager );
+		const loader = new GLTFLoader( manager );
 		loader.load( 'fish.gltf', (gltf) => {
 
 			scene.add( gltf.scene );
@@ -100,7 +100,6 @@
 
 		<p>
 			[example:webgl_loader_obj WebGL / loader / obj]<br />
-			[example:webgl_materials_physical_reflectivity WebGL / materials / physical / reflectivity]<br />
 			[example:webgl_postprocessing_outline WebGL / postprocesing / outline]
 		</p>
 

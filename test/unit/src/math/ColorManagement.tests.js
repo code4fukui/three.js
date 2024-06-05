@@ -7,11 +7,11 @@ export default QUnit.module( 'Maths', () => {
 	QUnit.module( 'ColorManagement', () => {
 
 		// PROPERTIES
-		QUnit.test( 'legacyMode', ( assert ) => {
+		QUnit.test( 'enabled', ( assert ) => {
 
-			assert.ok(
-				ColorManagement.legacyMode == true,
-				'ColorManagement.legacyMode is true by default.'
+			assert.strictEqual(
+				ColorManagement.enabled, true,
+				'ColorManagement.enabled is true by default.'
 			);
 
 		} );

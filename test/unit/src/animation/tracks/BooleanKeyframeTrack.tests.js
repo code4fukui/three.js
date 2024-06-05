@@ -10,10 +10,16 @@ export default QUnit.module( 'Animation', () => {
 
 		QUnit.module( 'BooleanKeyframeTrack', () => {
 
+			const parameters = {
+				name: '.visible',
+				times: [ 0, 1 ],
+				values: [ true, false ],
+			};
+
 			// INHERITANCE
 			QUnit.test( 'Extending', ( assert ) => {
 
-				const object = new BooleanKeyframeTrack( '.visible', [ 0, 1 ], [ true, false ] );
+				const object = new BooleanKeyframeTrack( parameters.name, parameters.times, parameters.values );
 				assert.strictEqual(
 					object instanceof KeyframeTrack, true,
 					'BooleanKeyframeTrack extends from KeyframeTrack'
@@ -22,9 +28,11 @@ export default QUnit.module( 'Animation', () => {
 			} );
 
 			// INSTANCING
-			QUnit.todo( 'Instancing', ( assert ) => {
+			QUnit.test( 'Instancing', ( assert ) => {
 
-				assert.ok( false, 'everything\'s gonna be alright' );
+				// name, times, values
+				const object = new BooleanKeyframeTrack( parameters.name, parameters.times, parameters.values );
+				assert.ok( object, 'Can instantiate a BooleanKeyframeTrack.' );
 
 			} );
 
