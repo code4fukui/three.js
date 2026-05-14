@@ -1,16 +1,14 @@
 # three.js
 
-> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
-
 [![NPM Package][npm]][npm-url]
 [![Build Size][build-size]][build-size-url]
 [![NPM Downloads][npm-downloads]][npmtrends-url]
 [![DeepScan][deepscan]][deepscan-url]
 [![Discord][discord]][discord-url]
 
-#### JavaScript 3D library
+#### JavaScript 3D ライブラリ
 
-The aim of the project is to create an easy-to-use, lightweight, cross-browser, general-purpose 3D library. The current builds only include a WebGL renderer but WebGPU (experimental), SVG and CSS3D renderers are also available as addons.
+本プロジェクトの目的は、使いやすく軽量で、クロスブラウザ対応の汎用3Dライブラリを作成することです。現在のビルドには WebGL レンダラーのみが含まれていますが、WebGPU（実験的）、SVG、および CSS3D レンダラーもアドオンとして利用可能です。
 
 [Examples](https://threejs.org/examples/) &mdash;
 [Docs](https://threejs.org/docs/) &mdash;
@@ -21,16 +19,16 @@ The aim of the project is to create an easy-to-use, lightweight, cross-browser, 
 [Forum](https://discourse.threejs.org/) &mdash;
 [Discord](https://discord.gg/56GBJwAnUS)
 
-### Usage
+### 使い方
 
-This code creates a scene, a camera, and a geometric cube, and it adds the cube to the scene. It then creates a `WebGL` renderer for the scene and camera, and it adds that viewport to the `document.body` element. Finally, it animates the cube within the scene for the camera.
+以下のコードは、シーン、カメラ、および立方体（キューブ）を作成し、そのキューブをシーンに追加します。次に、シーンとカメラ用の `WebGL` レンダラーを作成し、そのビューポートを `document.body` 要素に追加します。最後に、シーン内のキューブをカメラに対してアニメーションさせます。
 
 ```javascript
 import * as THREE from 'three';
 
 const width = window.innerWidth, height = window.innerHeight;
 
-// init
+// 初期化
 
 const camera = new THREE.PerspectiveCamera( 70, width / height, 0.01, 10 );
 camera.position.z = 1;
@@ -48,7 +46,7 @@ renderer.setSize( width, height );
 renderer.setAnimationLoop( animate );
 document.body.appendChild( renderer.domElement );
 
-// animation
+// アニメーション
 
 function animate( time ) {
 
@@ -60,19 +58,20 @@ function animate( time ) {
 }
 ```
 
-If everything goes well, you should see [this](https://jsfiddle.net/v98k6oze/).
+すべてが正しく動作すれば、[こちら](https://jsfiddle.net/v98k6oze/)のように表示されます。
 
-### Cloning this repository
+### リポジトリのクローン
 
-Cloning the repo with all its history results in a ~2 GB download. If you don't need the whole history you can use the `depth` parameter to significantly reduce download size.
+すべての履歴を含めてリポジトリをクローンすると、約2GBのダウンロードになります。すべての履歴が必要ない場合は、`depth` パラメーターを使用することでダウンロードサイズを大幅に削減できます。
 
 ```sh
 git clone --depth=1 https://github.com/mrdoob/three.js.git
 ```
 
-### Change log
+### 変更履歴
 
 [Releases](https://github.com/mrdoob/three.js/releases)
+
 
 [npm]: https://img.shields.io/npm/v/three
 [npm-url]: https://www.npmjs.com/package/three
@@ -84,4 +83,3 @@ git clone --depth=1 https://github.com/mrdoob/three.js.git
 [deepscan-url]: https://deepscan.io/dashboard#view=project&tid=16600&pid=19901&bid=525701
 [discord]: https://img.shields.io/discord/685241246557667386
 [discord-url]: https://discord.gg/56GBJwAnUS
-
